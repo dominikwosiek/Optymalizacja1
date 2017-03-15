@@ -1,4 +1,4 @@
- = True
+f = True
 n= int(raw_input())
 print('Maximize')
 for x in range(1, n+ 1):
