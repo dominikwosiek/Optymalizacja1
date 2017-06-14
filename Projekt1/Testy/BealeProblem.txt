@@ -1,0 +1,11 @@
+Maximize
+OBJ: 0.75 x1 - 150 x2 + 0.02 x3 - 6 x4
+Subject to
+Bound1: x1 => 0
+Bound2: x2 => 0
+Bound3: x3 => 0
+Bound4: x4 => 0
+Constraint1: 0.25 x1 - 60 x2 - 0.04 x3 + 9 x4 <=0
+Constraint2: 0.5 x1 - 90 x2 - 0.02 x3 + 3 x4 <=0
+Constraint3: x3 <= 1
+End

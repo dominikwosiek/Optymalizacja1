@@ -1,0 +1,10 @@
+Minimize
+Price: 0.75 Carrot + 0.5 Cabbage + 0.15 Cucumber
+Subject To
+B1: Carrot => 0
+B2: Cabbage => 0
+B3: Cucumber => 0
+VitaminA: 35 Carrot + 0.5 Cabbage + 0.5 Cucumber => 0.5
+VitaminC: 60 Carrot + 300 Cabbage + 10 Cucumber => 15
+DietaryFiber: 30 Carrot + 20 Cabbage + 10 Cucumber => 4
+End
