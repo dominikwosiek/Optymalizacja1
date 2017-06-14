@@ -4,5 +4,5 @@ Przeprowadzone testy dostępne są w folderze Testy.
 
 Projekt przygotowany przez:
 
-Gabriela Bożka
+Gabriela Bożka,
 Dominika Wośka
