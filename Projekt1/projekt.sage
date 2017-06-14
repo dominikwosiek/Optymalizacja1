@@ -163,10 +163,10 @@ def random_variable_leaving(self):
  
  
 def my_entering(self):
-    return random_variable_entering()
+    return random_variable_entering(self)
  
 def my_leaving(self):
-    return random_variable_leaving()
+    return random_variable_leaving(self)
  
 #
 # Definicja problemu
