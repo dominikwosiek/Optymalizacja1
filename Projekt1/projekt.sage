@@ -4,33 +4,43 @@ from copy import deepcopy
 import numpy as np
 from numpy import linalg as LA
  
-# Implementacje pivot rules
-
+# Implementacje metod
  
-# Largest Coefficient - wybor zmiennych o najwiekszym wspolczynniku funkcji celu
+# Largest Coefficient - wybór zmiennych o najwiekszym wspolczynniku przy funkcji celu
  
 def largest_coefficient_entering(self):
-    z=list(self.objective_coefficients())
-    x=max(z)
-    y=list(self.nonbasic_variables())
-    return y[z.index(x)]
- 
+    max = self.objective_coefficients()[0]
+    e=self.possible_entering()[0]
+    for variable in self.possible_entering():
+        index = list(self.nonbasic_variables()).index(variable)
+        if(max<self.objective_coefficients()[index]):
+            max = self.objective_coefficients()[index]
+            e=variable
+            
+    return e
+
+
 def largest_coefficient_leaving(self):
     return self.possible_leaving()[0]
  
-# Smallest Coefficient - wybor zmiennych o najmniejszym wspolczynniku funkcji celu
+# Smallest Coefficient - wybór zmiennych o najmniejszym wspolczynniku przy funkcji celu
  
 def smallest_coefficient_entering(self):
-    z=list(self.objective_coefficients())
-    x=min(z)
-    y=list(self.nonbasic_variables())
-    return y[z.index(x)]
+    min = self.objective_coefficients()[0]
+    e=self.possible_entering()[0]
+    for variable in self.possible_entering():
+        index = list(self.nonbasic_variables()).index(variable)
+        if(min>self.objective_coefficients()[index]):
+            min = self.objective_coefficients()[index]
+            e=variable
+            
+    return e
  
 def smallest_coefficient_leaving(self):
     return self.possible_leaving()[0]
  
-# Largest Increase - wybor zmiennych powodujacy najwiekszy wzrost funkcji celu
-  
+# Largest Increase - zmienna wchodzaca daje najwiekszy wzrost funkcji celu
+ 
 def largest_increase_entering(self):
     max=-100000000000000
     for i in self.possible_entering():
@@ -61,8 +71,8 @@ def largest_increase_leaving(self):
                 l=j
     return l
 
-# Smallest Increase - wybor zmiennych powodujacy najmniejszy wzrost funkcji celu
-
+# Smallest Increase - zmienna wchodzaca daje namniejszy wzrost funkcji celu
+ 
 def smallest_increase_entering(self):
     min=1000000000000
     e=self.possible_entering()[0]
@@ -95,7 +105,7 @@ def smallest_increase_leaving(self):
                 l=j
     return l
  
-# Steepest Edge - wybor zmiennej powodujacej wzrost najblizej wektorowi c (gradientowi funkcji celu)
+# Steepest Edge - kierujemy sie najblizej wektora gradientu funkcji celu
  
 def steepest_edge_entering(self):
     k=0
@@ -137,7 +147,7 @@ def steepest_edge_leaving(self):
                 l=j
     return l
  
-# Lexicographical Max - zmienne o najwiekszym indeksie
+# Lexicographical Max - wybor zmiennej najwiekszej leksykograficznie
  
 def lexicographical_max_entering(self):
     return max(self.possible_entering())
@@ -145,7 +155,7 @@ def lexicographical_max_entering(self):
 def lexicographical_max_leaving(self):
     return max(self.possible_leaving())
  
-# Bland'd Rule - zmienne o najmniejszym indeksie
+# Bland'd rule - wybor zmiennej namniejszej leksykograficznie
  
 def lexicographical_min_entering(self):
     return min(self.possible_entering())
@@ -153,7 +163,7 @@ def lexicographical_min_entering(self):
 def lexicographical_min_leaving(self):
     return min(self.possible_leaving())
 
-# Random Choice - wybor losowych zmiennych
+# Random - losowy wybor zmiennych
  
 def random_variable_entering(self):
     return random.choice(self.possible_entering())
@@ -161,6 +171,9 @@ def random_variable_entering(self):
 def random_variable_leaving(self):
     return random.choice(self.possible_leaving())
  
+# Wybor funkcji
+ 
+
  
 def my_entering(self):
     return random_variable_entering(self)
