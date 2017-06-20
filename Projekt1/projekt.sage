@@ -13,7 +13,7 @@ def largest_coefficient_entering(self):
     e=self.possible_entering()[0]
     for variable in self.possible_entering():
         index = list(self.nonbasic_variables()).index(variable)
-        if(max<self.objective_coefficients()[index]):
+        if(max<=self.objective_coefficients()[index]):
             max = self.objective_coefficients()[index]
             e=variable
             
@@ -30,7 +30,7 @@ def smallest_coefficient_entering(self):
     e=self.possible_entering()[0]
     for variable in self.possible_entering():
         index = list(self.nonbasic_variables()).index(variable)
-        if(min>self.objective_coefficients()[index]):
+        if(min>=self.objective_coefficients()[index]):
             min = self.objective_coefficients()[index]
             e=variable
             
@@ -75,7 +75,6 @@ def largest_increase_leaving(self):
  
 def smallest_increase_entering(self):
     min=1000000000000
-    e=self.possible_entering()[0]
     for i in self.possible_entering():
         P=deepcopy(self)
         P.enter(i)
@@ -84,14 +83,13 @@ def smallest_increase_entering(self):
             C.leave(j)
             C.update()
             k=C.objective_value()
-            if k>=min:
+            if k<=min:
                 min=k
                 e=i
     return e
    
 def smallest_increase_leaving(self):
     min=1000000000000
-    l=self.possible_leaving()[0]
     for i in self.possible_entering():
         P=deepcopy(self)
         P.enter(i)
@@ -100,7 +98,7 @@ def smallest_increase_leaving(self):
             C.leave(j)
             C.update()
             k=C.objective_value()
-            if k>=min:
+            if k<=min:
                 min=k
                 l=j
     return l
